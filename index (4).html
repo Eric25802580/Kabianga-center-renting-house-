@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOUSES AVAILABLE KABIANGA MARKET/CENTER</title>
+    <style>
+        :root {
+            --primary-green: #2e7d32;
+            --light-green: #e8f5e9;
+            --accent-red: #d32f2f;
+            --text-dark: #333333;
+            --bg-light: #f9f9f9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--primary-green);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light-green);
+        }
+
+        h1 {
+            font-size: 22px;
+            color: var(--primary-green);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .postal-address {
+            font-size: 14px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .note-red {
+            color: var(--accent-red);
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            font-size: 15px;
+        }
+
+        .note-green {
+            background-color: var(--light-green);
+            color: var(--primary-green);
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--primary-green);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: var(--primary-green);
+        }
+
+        input[readonly] {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            color: var(--primary-green);
+        }
+
+        .payment-info {
+            background-color: #fffde7;
+            border: 1px dashed #fbc02d;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .payment-info p {
+            margin-bottom: 5px;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #1b5e20;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .support-title {
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 10px;
+            color: #444;
+        }
+
+        .contact-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f1f1f1;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .contact-link:hover {
+            background: #e0e0e0;
+        }
+
+        .contact-link span {
+            color: var(--primary-green);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>HOUSES AVAILABLE KABIANGA MARKET/CENTER</h1>
+        <div class="postal-address">P.O BOX 2030-20200 KERICHO</div>
+    </header>
+
+    <div class="note-red">
+        Book now available
+    </div>
+
+    <div class="note-green">
+        "Clean, affordable, secure rooms 2 mins to campus. Water & WiFi available. Apply now the earlier the better , welcome"
+    </div>
+
+    <form id="bookingForm" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+            <label for="tenantName">Name</label>
+            <input type="text" id="tenantName" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="hostelOption">Hostel option</label>
+            <select id="hostelOption" onchange="updatePriceAndRooms()" required>
+                <option value="">-- Select Option --</option>
+                <option value="single">1. Single bedroom (ksh 3500)</option>
+                <option value="bedsitter">2. Bedsitter (ksh 4600)</option>
+                <option value="onebedroom">3. One bedroom (ksh 15000)</option>
+            </select>
+        </div>
+
+        <div class="form-group" id="roomGroup" style="display: none;">
+            <label for="roomSelect">Select Room Number</label>
+            <select id="roomSelect" required>
+                <!-- Rooms will be generated via JavaScript -->
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="amount">Amount (Ksh)</label>
+            <input type="text" id="amount" readonly placeholder="Select hostel option first">
+        </div>
+
+        <div class="payment-info">
+            <p><strong>Mpesa No:</strong> 0728037243 (Eric - landlord)</p>
+            <p><strong>Caretaker No:</strong> 0108544492</p>
+        </div>
+
+        <div class="form-group">
+            <label for="transactionId">Transaction ID</label>
+            <input type="text" id="transactionId" placeholder="Enter M-Pesa Transaction ID" required style="text-transform: uppercase;">
+        </div>
+
+        <button type="submit" class="btn-submit">Add submit</button>
+    </form>
+
+    <footer>
+        <div class="support-title">Contact support (call now)</div>
+        <a href="tel:0728037243" class="contact-link">
+            <span>Landlord</span>
+            <span>0728037243</span>
+        </a>
+        <a href="tel:0108544492" class="contact-link">
+            <span>Caretaker</span>
+            <span>0108544492</span>
+        </a>
+    </footer>
+</div>
+
+<script>
+    const roomData = {
+        single: {
+            price: "3500",
+            rooms: ["Room B", "Room C", "Room G"]
+        },
+        bedsitter: {
+            price: "4600",
+            rooms: ["Room D", "Room E", "Room A", "Room C"]
+        },
+        onebedroom: {
+            price: "15000",
+            rooms: ["Room B", "Room D", "Room A", "Room G", "Room F"]
+        }
+    };
+
+    function updatePriceAndRooms() {
+        const optionSelect = document.getElementById("hostelOption");
+        const selectedValue = optionSelect.value;
+        const amountInput = document.getElementById("amount");
+        const roomGroup = document.getElementById("roomGroup");
+        const roomSelect = document.getElementById("roomSelect");
+
+        if (selectedValue && roomData[selectedValue]) {
+            const data = roomData[selectedValue];
+            
+            // Set amount automatically
+            amountInput.value = data.price;
+            
+            // Clear and populate room select dropdown
+            roomSelect.innerHTML = '<option value="">-- Select Room --</option>';
+            data.rooms.forEach(room => {
+                const option = document.createElement("option");
+                option.value = room;
+                option.textContent = room;
+                roomSelect.appendChild(option);
+            });
+            
+            // Show room dropdown
+            roomGroup.style.display = "block";
+        } else {
+            // Reset if no selection
+            amountInput.value = "";
+            roomGroup.style.display = "none";
+            roomSelect.innerHTML = "";
+        }
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById("tenantName").value;
+        const option = document.getElementById("hostelOption").options[document.getElementById("hostelOption").selectedIndex].text;
+        const room = document.getElementById("roomSelect").value;
+        const amount = document.getElementById("amount").value;
+        const transactionId = document.getElementById("transactionId").value;
+
+        alert(`Booking Form Submitted Successfully!\n\nName: ${name}\nOption: ${option}\nRoom: ${room}\nAmount: Ksh ${amount}\nTransaction ID: ${transactionId}`);
+    }
+</script>
+
+</body>
+</html>
